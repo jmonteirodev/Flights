@@ -1,0 +1,33 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 03-12-2023
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <template if:true={error}>
+        {error.message}
+    </template>
+    <template if:false={error}>
+        <template if:true={newFlight}>
+            <lightning-button variant="destructive-text" label="Cancel" onclick={hideNewFlight} class="slds-m-left_x-small"></lightning-button>
+            <c-flight-create onflightcreated={hideNewFlight}></c-flight-create>
+        </template>
+        <template if:false={newFlight}>
+            <lightning-button variant="Neutral" label="New Flight" onclick={showNewFlight} class="slds-m-left_x-small"></lightning-button>
+            <template if:true={informations.length}>
+                <template for:each={informations} for:item="flight">
+                    <div class="slds-p-around_medium slds-theme_shade slds-m-vertical_xx-small"  key={flight.Id}>
+                        <p><b>Departure Airport:</b> {flight.DepartureAirport__r.IATACode__c}</p>
+                        <p><b>Arrival Airport:</b> {flight.ArrivalAirport__r.IATACode__c}</p>
+                        <p><b>Flight Distance:</b> {flight.FlightDistance__c} kilometers</p>
+                      </div>
+                </template>
+            </template>
+            <div if:false={informations.length} class="slds-p-around_medium slds-theme_shade slds-m-vertical_xx-small" >
+                <p>No flights available.</p>
+            </div>
+        </template>
+    </template>
+</template>

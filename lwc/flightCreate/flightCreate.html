@@ -1,0 +1,21 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 03-12-2023
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+        <div class="slds-p-around_medium slds-theme_shade slds-m-vertical_xx-small" if:true={options.length}>
+            <lightning-combobox name="departure" label="Departure Airport" value={departure}
+                placeholder="Select departure airport" options={options}
+                onchange={chooseDeparture}></lightning-combobox>
+            <lightning-combobox name="arrival" label="Arrival Airport" value={arrival}
+                placeholder="Select arrival airport" options={optionsArrival} onchange={chooseArrival}></lightning-combobox>
+            <lightning-button variant="Neutral" label="Save" onclick={save}
+                class="slds-m_x-small"></lightning-button>
+        </div>
+    <div if:false={options.length} class="slds-p-around_medium slds-theme_shade slds-m-vertical_xx-small" >
+        <p>No airports available.</p>
+    </div>
+</template>
